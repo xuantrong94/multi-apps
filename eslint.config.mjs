@@ -11,8 +11,8 @@ const eslintConfig = defineConfig([
     ...tailwind.configs.recommended,
     settings: {
       tailwindcss: {
-        config: "app/globals.css",
-        cssConfigPath: "app/globals.css",
+        config: "src/app/globals.css",
+        cssConfigPath: "src/app/globals.css",
       },
     },
   },
