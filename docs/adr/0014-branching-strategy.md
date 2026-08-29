@@ -60,3 +60,19 @@ merge sau khi tự review xong — đây chính là hành động "go-live" củ
   nhầm `develop`.
 - Nhánh task (per T0.x/T1...) rẽ ra từ `develop`, không thuộc phạm vi quyết định này —
   xem quy ước đặt tên khi bắt đầu từng task cụ thể.
+
+## Cập nhật 2026-08-29 — đổi default branch trên GitHub sang `develop`
+
+Phát hiện khi kiểm tra quy trình: tính năng "Create a branch" của GitHub trên issue mặc
+định lấy **default branch của repo** làm base — lúc đó default branch vẫn là `main`
+(`gh repo view --json defaultBranchRef` → `main`), nghĩa là mọi nhánh task tạo qua nút đó
+sẽ vô tình rẽ từ `main` thay vì `develop`, trừ khi tự tay đổi dropdown mỗi lần — cùng dạng
+rủi ro "bước thủ công dễ quên" như vụ title tiếng Việt ở
+[ADR-0015](0015-github-facing-titles-english.md).
+
+**Đã sửa:** `gh repo edit xuantrong94/multi-apps --default-branch develop`. Từ nay
+"Create a branch" trên issue tự động base đúng `develop`, không cần nhớ chọn tay.
+`main` vẫn giữ vai trò production (protection không đổi); default branch trên GitHub chỉ
+ảnh hưởng nhánh gợi ý mặc định khi tạo branch/PR mới và nhánh hiển thị khi vào repo — không
+ảnh hưởng cấu hình Production Branch riêng của Vercel (vẫn phải set tay = `main` khi tạo
+Vercel project, xem mục trên).
